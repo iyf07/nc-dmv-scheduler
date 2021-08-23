@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebProjectDMV</title>
+    <link href="../static/bootstrap.css" rel="stylesheet">
+    <script src="validation.js"></script>
+</head>
+
+<body>
+
+<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <div class="container">
+        <a href="home.html" class="navbar-brand">NCDMV Appointment Scheduler</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"> About </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="form.html"> Schedule an Appointment </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:sample@gmail.com"> Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form name="input" action="/result" method="post">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <h2>Personal Information</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" name="firstname" placeholder="First name" id="firstname"
+                       onblur="CheckFirstname()" required>
+                <p id="checkfirstname" class="validationtext"></p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastname" placeholder="Last name" id="lastname"
+                       onblur="CheckLastname()" required>
+                <p id="checklastname" class="validationtext"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="phone">Phone number</label>
+                <input type="number" class="form-control" name="phone" placeholder="1234567890" id="phone"
+                       onblur="CheckPhonenumber()" required>
+                <p id="checkphonenumber" class="validationtext"></p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="email" placeholder="123abc@xyz.com" id="email"
+                       onblur="CheckEmail()" required>
+                <p id="checkemail" class="validationtext"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="zipcode">Zipcode</label>
+                <input type="number" class="form-control" id="zipcode" name="zipcode" placeholder="27705"
+                       onblur="CheckZipcode()" required>
+                <p id="checkzipcode" class="validationtext"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <h2>Appointment Information</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="distance">Distance expected in miles</label>
+                <input type="number" class="form-control" name="distance" id="distance" placeholder="20"
+                       onblur="CheckDistance()" required>
+                <p id="checkdistance" class="validationtext"></p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="appointment">Appointment</label>
+                <select id="appointment" class="form-control" name="appointment">
+                    <option value=0>Driver License - First Time</option>
+                    <option value=1>Driver License Duplicate</option>
+                    <option value=2>Driver License Renewal</option>
+                    <option value=3>Fees</option>
+                    <option value=4>ID Card</option>
+                    <option value=5>Knowledge / Computer Test</option>
+                    <option value=6>Legal Presence</option>
+                    <option value=7>Motorcycle Skills Test</option>
+                    <option value=8>Permits</option>
+                    <option value=9>Road Test</option>
+                    <option value=10>Teen Driver Level 1</option>
+                    <option value=11>Teen Driver Level 2</option>
+                    <option value=12>Teen Driver Level 3</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="selectdays">Day</label><br>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id="selectdays">
+                    <input type="checkbox" class="btn-check" name="day" id="day4" value=4 autocomplete="off" checked
+                           onblur="CheckDay()">
+                    <label class="btn btn-primary" for="day4">Mondays</label>
+                    <input type="checkbox" class="btn-check" name="day" id="day3" value=3 autocomplete="off" checked
+                           onblur="CheckDay()">
+                    <label class="btn btn-primary" for="day3">Tuesdays</label>
+                    <input type="checkbox" class="btn-check" name="day" id="day2" value=2 autocomplete="off" checked
+                           onblur="CheckDay()">
+                    <label class="btn btn-primary" for="day2">Wednesdays</label>
+                    <input type="checkbox" class="btn-check" name="day" id="day1" value=1 autocomplete="off" checked
+                           onblur="CheckDay()">
+                    <label class="btn btn-primary" for="day1">Thursdays</label>
+                    <input type="checkbox" class="btn-check" name="day" id="day0" value=0 autocomplete="off" checked
+                           onblur="CheckDay()">
+                    <label class="btn btn-primary" for="day0">Fridays</label>
+                </div>
+                <div>
+                    <p id="checkday" class="validationtext"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="selectdate">
+            <div class="col-md-6 form-group">
+                <label for="dateafter">Date after</label>
+                <input type="date" class="form-control" name="dateafter" id="dateafter" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="datebefore">Date before</label>
+                <input type="date" class="form-control" name="datebefore" id="datebefore" onblur="CheckDate()" required>
+            </div>
+            <div>
+                <p id="checkdate" class="validationtext"></p>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <label for="timeselect">Time</label>
+            <div class="col-md-12" id="timeselect">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=0 id="0" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="0">7:00 AM - 7:59 AM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=1 id="1" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="1">8:00 AM - 8:59 AM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=2 id="2" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="2">9:00 AM - 9:59 AM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=3 id="3" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="3">10:00 AM - 10:59 AM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=4 id="4" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="4">11:00 AM - 11:59 AM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=5 id="5" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="5">12:00 PM - 12:59 PM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=6 id="6" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="6">1:00 PM - 1:59 PM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=7 id="7" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="7">2:00 PM - 2:59 PM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=8 id="8" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="8">3:00 PM - 3:59 PM</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="time" value=9 id="9" checked onblur="CheckTime()" required>
+                    <label class="form-check-label" for="9">4:00 PM - 5:00 PM</label>
+                </div>
+            </div>
+            <div>
+                 <p id="checktime" class="validationtext"></p>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <label for="textcheck">Send me text reminders</label><br>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="textcheck">
+                <input type="radio" class="btn-check" name="textcheck" id="textyes" autocomplete="off" value="true"
+                       checked>
+                <label class="btn btn-outline-primary" for="textyes">Yes</label>
+                <input type="radio" class="btn-check" name="textcheck" id="textno" autocomplete="off" value="false">
+                <label class="btn btn-outline-primary" for="textno">No</label>
+            </div>
+            <div>
+                <br>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="emailcheck">Send me email reminders</label><br>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="emailcheck">
+                <input type="radio" class="btn-check" name="emailcheck" id="emailyes" autocomplete="off" checked
+                       value="true">
+                <label class="btn btn-outline-primary" for="emailyes">Yes</label>
+                <input type="radio" class="btn-check" name="emailcheck" id="emailno" autocomplete="off" value="false">
+                <label class="btn btn-outline-primary" for="emailno">No</label>
+            </div>
+            <div>
+                <br>
+            </div>
+        </div>
+        <div class="center">
+            <input type="submit" class="btn btn-outline-primary" onclick="return FormCheck();">
+        </div>
+    </form>
+</div>
+</form>
+</body>
+</html>
