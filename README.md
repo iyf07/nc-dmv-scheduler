@@ -1,4 +1,5 @@
-# NC DMV Appointment Scheduler (Unofficial)
+# NC DMV Appointment Scheduler
+Unofficial Program. Personal Use Only. 
  
 ## Description
 This is a web application that replaces users for finding and scheduling NC DMV appointments with users' personal information, and time and location preferences.
@@ -29,7 +30,7 @@ People who will need to schedule an NC DMV appointment as soon as possible.
 * Submit the form to start the program.
 
 ## Authors
-@iyf07
+* @iyf07
 
 ## Disclaimer
 * This is an UNOFFICIAL North Carolina DMV Service Appointment Scheduler. Personal use only. This appointment scheduler can help you schedule an appointment with your preferred time right after other people cancel or reschedule their appointments.
